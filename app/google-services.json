@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394537185106",
+    "project_id": "gomop-8553c",
+    "storage_bucket": "gomop-8553c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394537185106:android:21b4c4c32526dcd431548b",
+        "android_client_info": {
+          "package_name": "com.hansung.androidusedtradeproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmKV3D5xmrZC3gQhN_5bkO1E76h3fhmK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
