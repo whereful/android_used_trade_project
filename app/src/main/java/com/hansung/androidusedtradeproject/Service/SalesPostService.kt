@@ -9,6 +9,12 @@ import com.google.firebase.ktx.Firebase
 
 
 class SalesPostService {
+
+    // 싱글톤 객체 설정
+    companion object {
+        val instance = SalesPostService()
+    }
+
     val db: FirebaseFirestore = Firebase.firestore
     val itemsCollectionRef = db.collection("items")
 
