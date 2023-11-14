@@ -10,7 +10,7 @@ import com.google.firebase.ktx.Firebase
 
 class SalesPostService {
     val db: FirebaseFirestore = Firebase.firestore
-    val itemsCollectionRef = db.collection("items")
+    val itemsCollectionRef = db.collection("posts")
 
     fun getPosts(): Task<QuerySnapshot> {
         return itemsCollectionRef.get();
@@ -41,7 +41,7 @@ class SalesPostService {
                 "content" to content,
                 "price" to price,
                 "soldOut" to false,
-                "uid" to Firebase.auth.currentUser!!.uid
+                "writer" to Firebase.auth.currentUser!!.uid
             )
         ).addOnSuccessListener {
             Log.v("로그", "업로드 완료")
