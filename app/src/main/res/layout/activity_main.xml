@@ -7,20 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="7000">
-
-        <!-- 프래그먼트를 표시할 컨테이너 -->
-        <FrameLayout
-            android:id="@+id/mainFragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/btnJoinFragment" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
@@ -57,6 +44,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="계정" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7000">
+
+        <!-- 프래그먼트를 표시할 컨테이너 -->
+        <FrameLayout
+            android:id="@+id/mainFragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnJoinFragment" />
 
     </LinearLayout>
 

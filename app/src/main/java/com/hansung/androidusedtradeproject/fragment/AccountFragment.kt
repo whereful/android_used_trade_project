@@ -11,7 +11,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.widget.TextView
 import com.hansung.androidusedtradeproject.R
+import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.SignActivity
+import com.hansung.androidusedtradeproject.TestActivity
 
 class AccountFragment : Fragment() {
 
@@ -19,13 +21,11 @@ class AccountFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // MainActivity에서 매개변수로 작성한 key값과 일치해야 함
-        val str = arguments?.getString("email");
-
         // 네 번째 프래그먼트의 레이아웃을 정의하고 반환
         root = inflater.inflate(R.layout.main_fragment_account, container, false)
 
-        root.findViewById<TextView>(R.id.textUID).text = "account : $str"
+        root.findViewById<TextView>(R.id.textUID).text =
+            "account : ${SalesPostService.instance.email}"
 
         root.findViewById<Button>(R.id.sign_out)?.setOnClickListener {
 
@@ -35,6 +35,13 @@ class AccountFragment : Fragment() {
                 Intent(activity, SignActivity::class.java)
             )
             activity?.finish()
+        }
+
+        // 테스트 이동 버튼
+        root.findViewById<Button>(R.id.move_test_page_button)?.setOnClickListener {
+            startActivity(
+                Intent(activity, TestActivity::class.java)
+            )
         }
 
 
