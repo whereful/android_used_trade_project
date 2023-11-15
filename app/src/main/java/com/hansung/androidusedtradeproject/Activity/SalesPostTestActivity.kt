@@ -16,11 +16,12 @@ class SalesPostTestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sales_post_test)
 
         findViewById<Button>(R.id.loadButton).setOnClickListener {
-            SalesPostService().getPostsBySoldOut(true).addOnSuccessListener {
+            SalesPostService().getPosts().addOnSuccessListener {
 
                 //#. makeListByQuerySnapshot를 통해서 스냅샷으로 글 목록 리스트로 변환 할 수 있습니다.
                 val postList = SalesPost.makeListByQuerySnapshot(it);
                 Toast.makeText(this, "불러오기 성공", Toast.LENGTH_SHORT).show()
+                postList.forEach { post ->  Log.v("로그" , post.print())}
             }
         }
 

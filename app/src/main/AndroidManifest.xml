@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AndroidUsedTradeProject"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SalesPostDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SalesPostTestActivity"
             android:exported="false" />
         <activity

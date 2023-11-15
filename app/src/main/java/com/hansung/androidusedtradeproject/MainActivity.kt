@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.Activity.SalesPostTestActivity
+import com.hansung.androidusedtradeproject.Activity.TestActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,11 +32,10 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        findViewById<Button>(R.id.moveLoadPageButton)?.setOnClickListener {
+        findViewById<Button>(R.id.move_test_page_button)?.setOnClickListener {
 
             startActivity(
-                Intent(this, SalesPostTestActivity::class.java))
-            finish()
+                Intent(this, TestActivity::class.java))
         }
     }
 }
