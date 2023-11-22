@@ -1,13 +1,19 @@
 package com.hansung.androidusedtradeproject.model
 
+import android.icu.text.SimpleDateFormat
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import java.io.Serializable
+import java.util.Date
+
 
 data class SalesPost(
     var id : String,
+    var date : String,
     var title : String ,
-    var writer : String,
+    var email : String,
     var content : String,
     var price : Int,
     var soldOut : Boolean
@@ -15,18 +21,31 @@ data class SalesPost(
 
     constructor(doc: QueryDocumentSnapshot) :
             this(
-                doc.id,
-                doc["title"].toString(),
-                doc["writer"].toString(),
-                doc["content"].toString(),
-                doc["price"].toString().toIntOrNull() ?: 0,
-                doc["soldOut"].toString().toBoolean()
+                id = doc.id,
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                title = doc["title"].toString(),
+                email = doc["email"].toString(),
+                content = doc["content"].toString(),
+                price = doc["price"].toString().toIntOrNull() ?: 0,
+                soldOut = doc["soldOut"].toString().toBoolean()
+            )
+
+    constructor(doc: DocumentSnapshot) :
+            this(
+                id = doc.id,
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                title = doc["title"].toString(),
+                email = doc["writerEmail"].toString(),
+                content = doc["content"].toString(),
+                price = doc["price"].toString().toIntOrNull() ?: 0,
+                soldOut = doc["soldOut"].toString().toBoolean()
             )
 
     fun print() : String{
         return  "id : $id\n" +
+                "date : ${date}\n" +
                 "title : $title\n" +
-                "writer : $writer\n" +
+                "writerUid : $email\n" +
                 "content : $content\n" +
                 "price : $price\n" +
                 "soldOut : $soldOut"

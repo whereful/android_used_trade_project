@@ -30,7 +30,7 @@ class SalesPostTestActivity : AppCompatActivity() {
             val content = findViewById<EditText>(R.id.contentText).text.toString()
             val price = findViewById<EditText>(R.id.price).text.toString().toInt()
 
-            SalesPostService().addPost(title ,content,price)
+            SalesPostService().uploadPost(title ,content,price)
         }
     }
 }
