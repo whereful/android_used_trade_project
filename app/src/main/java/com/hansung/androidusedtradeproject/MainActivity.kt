@@ -4,26 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.Activity.SalePostUploadActivity
-import com.hansung.androidusedtradeproject.Service.SalesPostService
-
 import com.hansung.androidusedtradeproject.fragment.AccountFragment
 import com.hansung.androidusedtradeproject.fragment.ListFragment
 import com.hansung.androidusedtradeproject.fragment.MessageFragment
-import com.hansung.androidusedtradeproject.fragment.RegisterFragment
 
 
 class MainActivity : AppCompatActivity() {
 
     private val listFragment = ListFragment()
-    private val registerFragment = RegisterFragment()
     private val messageFragment = MessageFragment()
     private val accountFragment = AccountFragment()
 
@@ -41,8 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         // 만든 GradientDrawable을 LinearLayout의 배경으로 설정
         linearLayout.background = border
-
-        //initSalesPostService(Firebase.auth.currentUser!!.uid, intent.getStringExtra("email"))
 
         // 처음에는 첫 번째 프래그먼트를 표시
         supportFragmentManager.beginTransaction()

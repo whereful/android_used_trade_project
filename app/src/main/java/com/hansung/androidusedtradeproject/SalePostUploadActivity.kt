@@ -39,4 +39,29 @@ class SalePostUploadActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    /**
+     * 등록 유효성 검사
+     */
+    private fun validateRegister(title: String, content: String, price: String): Boolean {
+        if (title.isNullOrEmpty()) {
+            Toast.makeText(this, "제목을 입력해주세요",
+                Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (content.isNullOrEmpty()) {
+            Toast.makeText(this, "내용을 입력해주세요",
+                Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (price.isNullOrEmpty()) {
+            Toast.makeText(this, "가격을 입력해주세요",
+                Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
 }
