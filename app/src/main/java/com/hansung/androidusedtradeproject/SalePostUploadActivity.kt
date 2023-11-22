@@ -1,4 +1,4 @@
-package com.hansung.androidusedtradeproject.Activity
+package com.hansung.androidusedtradeproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
