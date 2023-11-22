@@ -1,4 +1,4 @@
-package com.hansung.androidusedtradeproject.Activity
+package com.hansung.androidusedtradeproject
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
@@ -33,9 +32,9 @@ class TestActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.postUploadTestPageButton).setOnClickListener {
+        /*findViewById<Button>(R.id.postUploadTestPageButton).setOnClickListener {
             var intent = Intent(this, SalePostUploadActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 }

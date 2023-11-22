@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 첫 번째 프래그먼트의 레이아웃 요소들을 추가하세요 -->
+
+    <!-- 요소 정의 표시 layout -->
+    <LinearLayout
+        android:id="@+id/partLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/menuUser"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="4"
+            android:ellipsize="end"
+            android:text="판매자" />
+
+        <TextView
+            android:id="@+id/menuTitle"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:maxLength="5"
+            android:ellipsize="end"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/menuContent"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:maxLength="12"
+            android:ellipsize="end"
+            android:text="내용" />
+
+        <TextView
+            android:id="@+id/menuPrice"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:maxLength="4"
+            android:ellipsize="end"
+            android:text="가격" />
+
+        <TextView
+            android:id="@+id/menuSoldOut"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:maxLength="5"
+            android:ellipsize="end"
+            android:text="판매됨" />
+
+    </LinearLayout>
+
+
+    <!-- 필터 필요, 글 전체 목록을 여기다가 나오도록 해야 함 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+
+
+

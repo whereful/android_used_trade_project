@@ -10,6 +10,7 @@ import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
+/*
 class SalesPostTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,4 +34,4 @@ class SalesPostTestActivity : AppCompatActivity() {
             SalesPostService().uploadPost(title ,content,price)
         }
     }
-}
+}*/

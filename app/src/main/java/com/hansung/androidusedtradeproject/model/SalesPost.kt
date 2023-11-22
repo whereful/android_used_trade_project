@@ -17,7 +17,7 @@ data class SalesPost(
     var content : String,
     var price : Int,
     var soldOut : Boolean
-    )  : Serializable{
+)  : Serializable{
 
     constructor(doc: QueryDocumentSnapshot) :
             this(

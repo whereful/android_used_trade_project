@@ -1,4 +1,4 @@
-package com.hansung.androidusedtradeproject.Activity
+package com.hansung.androidusedtradeproject
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalesPostDetailActivity : AppCompatActivity() {

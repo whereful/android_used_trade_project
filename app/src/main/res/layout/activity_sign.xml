@@ -15,7 +15,7 @@
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="email"
+        android:hint="이메일 형식으로 입력"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,30 +28,37 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="6자리 이상 입력"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
+
     <Button
         android:id="@+id/sign_in"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="230dp"
-        android:text="SIGN IN"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="300dp"
+        android:text="로그인 실행"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/sign_up"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="230dp"
-        android:text="SIGN UP"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="300dp"
+        android:text="회원가입 실행"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
