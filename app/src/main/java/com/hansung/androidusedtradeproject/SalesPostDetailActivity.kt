@@ -1,12 +1,12 @@
 package com.hansung.androidusedtradeproject
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalesPostDetailActivity : AppCompatActivity() {
@@ -15,12 +15,12 @@ class SalesPostDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sales_post_detail)
 
-        val post = intent.getSerializableExtra("post" , SalesPost::class.java)
+        val post = intent.getSerializableExtra("post", SalesPost::class.java)
 
-        if(post == null){
+        if (post == null) {
             Toast.makeText(this, "판매글 정보가 없습니다.", Toast.LENGTH_SHORT).show()
-        }else{
-            Log.v("로그" , post.print())
+        } else {
+            Log.v("로그", post.print())
         }
 
 

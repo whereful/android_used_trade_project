@@ -18,9 +18,9 @@
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLength="4"
-            android:ellipsize="end"
             android:text="판매자" />
 
         <TextView
@@ -28,9 +28,9 @@
             android:layout_width="35dp"
             android:layout_height="40dp"
             android:layout_weight="1.2"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLength="5"
-            android:ellipsize="end"
             android:text="제목" />
 
         <TextView
@@ -38,9 +38,9 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_weight="3"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLength="12"
-            android:ellipsize="end"
             android:text="내용" />
 
         <TextView
@@ -48,9 +48,9 @@
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_weight="0.8"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLength="4"
-            android:ellipsize="end"
             android:text="가격" />
 
         <TextView
@@ -58,9 +58,9 @@
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_weight="0.5"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLength="5"
-            android:ellipsize="end"
             android:text="판매됨" />
 
     </LinearLayout>

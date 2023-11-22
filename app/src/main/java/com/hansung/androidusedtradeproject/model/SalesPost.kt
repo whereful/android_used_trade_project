@@ -9,19 +9,20 @@ import java.io.Serializable
 
 
 data class SalesPost(
-    var id : String,
-    var date : String,
-    var title : String ,
-    var email : String,
-    var content : String,
-    var price : Int,
-    var soldOut : Boolean
-)  : Serializable{
+    var id: String,
+    var date: String,
+    var title: String,
+    var email: String,
+    var content: String,
+    var price: Int,
+    var soldOut: Boolean
+) : Serializable {
 
     constructor(doc: QueryDocumentSnapshot) :
             this(
                 id = doc.id,
-                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate())
+                    .toString(),
                 title = doc["title"].toString(),
                 email = doc["email"].toString(),
                 content = doc["content"].toString(),
@@ -32,7 +33,8 @@ data class SalesPost(
     constructor(doc: DocumentSnapshot) :
             this(
                 id = doc.id,
-                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate())
+                    .toString(),
                 title = doc["title"].toString(),
                 email = doc["writerEmail"].toString(),
                 content = doc["content"].toString(),
@@ -40,8 +42,8 @@ data class SalesPost(
                 soldOut = doc["soldOut"].toString().toBoolean()
             )
 
-    fun print() : String{
-        return  "id : $id\n" +
+    fun print(): String {
+        return "id : $id\n" +
                 "date : ${date}\n" +
                 "title : $title\n" +
                 "writerUid : $email\n" +
@@ -51,7 +53,7 @@ data class SalesPost(
     }
 
     companion object {
-        fun makeListByQuerySnapshot(snapshot : QuerySnapshot) : MutableList<SalesPost>{
+        fun makeListByQuerySnapshot(snapshot: QuerySnapshot): MutableList<SalesPost> {
             val items = mutableListOf<SalesPost>()
             for (doc in snapshot) {
                 var item = SalesPost(doc)

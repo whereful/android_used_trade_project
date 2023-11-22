@@ -1,11 +1,11 @@
 package com.hansung.androidusedtradeproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
@@ -14,19 +14,18 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        findViewById<Button>(R.id.post_detail_view_button).setOnClickListener{
+        findViewById<Button>(R.id.post_detail_view_button).setOnClickListener {
             var intent = Intent(this, SalesPostDetailActivity::class.java)
 
             SalesPostService().getPostById("xqCXLMQ1QQgQ2Mu0oQpR").addOnSuccessListener {
-                if(it.exists()){
+                if (it.exists()) {
                     var post = SalesPost(it);
                     intent.putExtra(
-                        "post" ,post
+                        "post", post
                     )
-                    Log.v("로그" , post.print())
+                    Log.v("로그", post.print())
                     startActivity(intent)
-                }
-                else{
+                } else {
                     Toast.makeText(this, "글이 없음", Toast.LENGTH_SHORT).show()
                 }
             }

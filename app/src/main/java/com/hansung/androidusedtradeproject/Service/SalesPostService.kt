@@ -1,4 +1,5 @@
 package com.hansung.androidusedtradeproject.Service
+
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
@@ -23,11 +24,11 @@ class SalesPostService {
         return postsCollectionRef.get();
     }
 
-    fun getPostsBySoldOut(soldOut : Boolean): Task<QuerySnapshot> {
-        return postsCollectionRef.whereEqualTo("soldOut" , soldOut).get()
+    fun getPostsBySoldOut(soldOut: Boolean): Task<QuerySnapshot> {
+        return postsCollectionRef.whereEqualTo("soldOut", soldOut).get()
     }
 
-    fun getPostById(id : String): Task<DocumentSnapshot> {
+    fun getPostById(id: String): Task<DocumentSnapshot> {
         return postsCollectionRef.document(id).get()
     }
 
@@ -39,9 +40,8 @@ class SalesPostService {
         price: Int,
         onSuccess: (() -> Unit)? = null,
         onFailure: (() -> Unit)? = null,
-    )
-    {
-        if(Firebase.auth.currentUser == null){
+    ) {
+        if (Firebase.auth.currentUser == null) {
             Log.v("로그", "인증 실패")
             return
         }
@@ -57,16 +57,16 @@ class SalesPostService {
             )
         ).addOnSuccessListener {
             Log.v("로그", "업로드 완료")
-            if(onSuccess != null) onSuccess()
-        }.addOnFailureListener{
+            if (onSuccess != null) onSuccess()
+        }.addOnFailureListener {
             Log.v("로그", "업로드 실패")
-            if(onFailure != null) onFailure()
+            if (onFailure != null) onFailure()
         }
     }
 
 
     fun modifyPost(
-        post : SalesPost,
+        post: SalesPost,
         onSuccess: (() -> Void)? = null,
         onFailure: (() -> Void)? = null,
     ): Task<Void> {

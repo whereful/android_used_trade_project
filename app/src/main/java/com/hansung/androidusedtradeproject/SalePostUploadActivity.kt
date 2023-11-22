@@ -1,13 +1,12 @@
 package com.hansung.androidusedtradeproject
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 
 class SalePostUploadActivity : AppCompatActivity() {
@@ -20,10 +19,9 @@ class SalePostUploadActivity : AppCompatActivity() {
             val price = findViewById<EditText>(R.id.priceEditText).text.toString().toInt()
             val content = findViewById<EditText>(R.id.contentEditText).text.toString()
 
-            if(Firebase.auth.currentUser == null){
+            if (Firebase.auth.currentUser == null) {
                 Toast.makeText(this, "로그인 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else {
                 SalesPostService().uploadPost(
                     title = title,
                     content = content,
@@ -46,20 +44,26 @@ class SalePostUploadActivity : AppCompatActivity() {
      */
     private fun validateRegister(title: String, content: String, price: String): Boolean {
         if (title.isNullOrEmpty()) {
-            Toast.makeText(this, "제목을 입력해주세요",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "제목을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
         if (content.isNullOrEmpty()) {
-            Toast.makeText(this, "내용을 입력해주세요",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "내용을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
         if (price.isNullOrEmpty()) {
-            Toast.makeText(this, "가격을 입력해주세요",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "가격을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
         return true

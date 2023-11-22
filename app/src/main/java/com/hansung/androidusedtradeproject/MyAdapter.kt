@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class MyAdapter(val items: MutableList<SalesPost>) : RecyclerView.Adapter<MyAdapter.MyViewHolder> () {
+class MyAdapter(val items: MutableList<SalesPost>) :
+    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val userEmail = v.findViewById<TextView>(R.id.userEmail)
         val title = v.findViewById<TextView>(R.id.title)

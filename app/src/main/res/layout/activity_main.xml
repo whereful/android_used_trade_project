@@ -15,7 +15,7 @@
 
         <!-- 첫 번째 프래그먼트로 전환하는 버튼 -->
         <Button
-            android:id="@+id/btnLoginFragment"
+            android:id="@+id/btnListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,21 +23,13 @@
 
         <!-- 두 번째 프래그먼트로 전환하는 버튼 -->
         <Button
-            android:id="@+id/btnJoinFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="등록" />
-
-        <!-- 세 번째 프래그먼트로 전환하는 버튼 -->
-        <Button
             android:id="@+id/btnShowMessageFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="채팅" />
 
-        <!-- 네 번째 프래그먼트로 전환하는 버튼 -->
+        <!-- 세 번째 프래그먼트로 전환하는 버튼 -->
         <Button
             android:id="@+id/btnShowAccountFragment"
             android:layout_width="wrap_content"
