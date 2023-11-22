@@ -15,8 +15,8 @@
 
         <TextView
             android:id="@+id/menuUser"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
@@ -25,9 +25,9 @@
 
         <TextView
             android:id="@+id/menuTitle"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:layout_weight="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLength="5"
@@ -35,9 +35,9 @@
 
         <TextView
             android:id="@+id/menuContent"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLength="12"
@@ -45,9 +45,9 @@
 
         <TextView
             android:id="@+id/menuPrice"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_weight="0.8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLength="4"
@@ -55,9 +55,9 @@
 
         <TextView
             android:id="@+id/menuSoldOut"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLength="5"
