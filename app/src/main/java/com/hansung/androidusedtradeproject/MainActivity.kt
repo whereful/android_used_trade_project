@@ -74,4 +74,9 @@ class MainActivity : AppCompatActivity() {
         // super.onBackPressed()
     }
 
+    override fun onRestart() {
+        // println("호출")
+        super.onRestart()
+        listFragment.refreshAdapter()
+    }
 }

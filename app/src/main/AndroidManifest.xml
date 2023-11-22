@@ -14,32 +14,13 @@
         tools:targetApi="31">
 
         <!-- 화면 회전 막기 -->
+        <!-- android:screenOrientation="portrait"-->
 
         <!--로그인 액티비티-->
         <activity
-            android:name=".Activity.SalePostUploadActivity"
-            android:exported="false" />
-        <!--<activity
-            android:name=".Activity.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.SalesPostDetailActivity"
-            android:exported="false" />-->
-        <activity
-            android:name=".Activity.SalesPostTestActivity"
-            android:exported="false" />
-        <!--<activity
-            android:name=".MainActivity"
-            android:exported="true">-->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-
-        <activity
             android:name=".SignActivity"
-            android:label="@string/app_name"
             android:exported="true"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,14 +30,24 @@
         </activity>
 
         <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".TestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".SalePostUploadActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".SalesPostDetailActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
     </application>
 

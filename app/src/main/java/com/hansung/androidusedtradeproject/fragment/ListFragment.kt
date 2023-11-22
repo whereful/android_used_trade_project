@@ -1,18 +1,23 @@
 package com.hansung.androidusedtradeproject.fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.MyAdapter
 import com.hansung.androidusedtradeproject.R
+import com.hansung.androidusedtradeproject.SalePostUploadActivity
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
@@ -25,6 +30,10 @@ import com.hansung.androidusedtradeproject.model.SalesPost
  */
 class ListFragment : Fragment() {
 
+    var postList = mutableListOf<SalesPost>()
+    var adapter: MyAdapter? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,16 +45,70 @@ class ListFragment : Fragment() {
         drawLinearLayoutBackgroundAndBorder(root)
         drawTextViewBorder(root)
 
+
         SalesPostService.instance.getPosts().addOnSuccessListener {
             // makeListByQuerySnapshot를 통해서 스냅샷으로 글 목록 리스트로 변환 할 수 있습니다.
-            val postList = SalesPost.makeListByQuerySnapshot(it)
+            postList = SalesPost.makeListByQuerySnapshot(it)
 
             val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = MyAdapter(postList)
+
+            adapter = MyAdapter(postList)
+            recyclerView.adapter = adapter
+
         }
+
+        root.findViewById<Button>(R.id.button_register).setOnClickListener {
+            val intent = Intent(activity, SalePostUploadActivity::class.java)
+
+            startActivity(intent)
+        }
+
+        root.findViewById<Button>(R.id.button_filter).setOnClickListener {
+            showCheckBoxDialog(adapter)
+        }
+
         return root;
     }
+
+
+    // 버튼 클릭 시 다이얼로그 표시
+    private fun showCheckBoxDialog(adapter: MyAdapter?) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Checkbox Dialog")
+
+        // 다이얼로그 내에 CheckBox 추가
+        val linearLayout = LinearLayout(requireContext())
+        linearLayout.orientation = LinearLayout.VERTICAL
+
+        val checkBox1 = CheckBox(requireContext())
+        checkBox1.text = "판매 중"
+        linearLayout.addView(checkBox1)
+
+        val checkBox2 = CheckBox(requireContext())
+        checkBox2.text = "판매 완료"
+        linearLayout.addView(checkBox2)
+
+        builder.setView(linearLayout)
+
+        // 확인 버튼 설정 및 클릭 리스너 추가
+        builder.setPositiveButton("OK") { _, _ ->
+            // CheckBox 상태 확인
+            val isChecked1 = checkBox1.isChecked
+            val isChecked2 = checkBox2.isChecked
+
+            adapter?.filter(isChecked1, isChecked2)
+        }
+
+        // 취소 버튼 설정
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // 다이얼로그 표시
+        builder.show()
+    }
+
 
     private fun drawLinearLayoutBackgroundAndBorder(root: View) {
         // LinearLayout 찾기 (ID에 따라 수정)
@@ -90,5 +153,17 @@ class ListFragment : Fragment() {
         menuContent.background = borderContent
         menuPrice.background = borderPrice
         menuSoldOut.background = borderSoldOut
+    }
+
+    fun refreshAdapter() {
+//        println("호출")
+        SalesPostService.instance.getPosts().addOnSuccessListener {
+            // makeListByQuerySnapshot를 통해서 스냅샷으로 글 목록 리스트로 변환 할 수 있습니다.
+            postList = SalesPost.makeListByQuerySnapshot(it)
+
+//            println(postList)
+            adapter?.setData(postList)
+            adapter?.notifyDataSetChanged()
+        }
     }
 }

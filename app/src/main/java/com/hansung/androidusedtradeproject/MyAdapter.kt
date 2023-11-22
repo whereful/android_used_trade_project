@@ -7,8 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class MyAdapter(val items: MutableList<SalesPost>) :
+class MyAdapter(var items: MutableList<SalesPost>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+    /**
+     * 원본 저장
+     */
+    var original = items.filter { true }
+
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val userEmail = v.findViewById<TextView>(R.id.userEmail)
         val title = v.findViewById<TextView>(R.id.title)
@@ -38,5 +44,30 @@ class MyAdapter(val items: MutableList<SalesPost>) :
         holder.content.text = "내용 : " + items[position].content
         holder.price.text = "가격 : " + items[position].price.toString()
         holder.soldOut.text = "판매 여부 : " + items[position].soldOut.toString()
+    }
+
+    fun setData(data: MutableList<SalesPost>) {
+        items = data
+        original = items.filter { true }
+    }
+
+    fun filter(c1: Boolean, c2: Boolean) {
+
+        if (c1 and c2) {
+            items = original.filter { true }.toMutableList()
+            notifyDataSetChanged()
+        }
+        else if (!c1 and !c2) {
+            items = original.filter { false }.toMutableList()
+            notifyDataSetChanged()
+        }
+        else if (c1 and !c2) {
+            items = original.filter { it.soldOut == true }.toMutableList()
+            notifyDataSetChanged()
+        }
+        else if (!c1 and c2) {
+            items = original.filter { it.soldOut == false }.toMutableList()
+            notifyDataSetChanged()
+        }
     }
 }

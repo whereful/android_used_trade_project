@@ -5,9 +5,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.Service.SalesPostService
+import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalePostUploadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,16 +19,17 @@ class SalePostUploadActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.uploadButton).setOnClickListener {
             val title = findViewById<EditText>(R.id.titleEditText).text.toString()
-            val price = findViewById<EditText>(R.id.priceEditText).text.toString().toInt()
             val content = findViewById<EditText>(R.id.contentEditText).text.toString()
+            val price = findViewById<EditText>(R.id.priceEditText).text.toString()
 
-            if (Firebase.auth.currentUser == null) {
-                Toast.makeText(this, "로그인 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
-            } else {
+            /**
+             * 유효성 검사
+             */
+            if (validateRegister(title, content, price)) {
                 SalesPostService().uploadPost(
                     title = title,
                     content = content,
-                    price = price,
+                    price = price.toInt(),
                     onSuccess = {
                         Toast.makeText(this, "업로드 성공.", Toast.LENGTH_SHORT).show()
                         finish()
