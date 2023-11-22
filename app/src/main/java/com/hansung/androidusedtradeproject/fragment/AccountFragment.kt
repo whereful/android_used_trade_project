@@ -25,7 +25,7 @@ class AccountFragment : Fragment() {
         root = inflater.inflate(R.layout.main_fragment_account, container, false)
 
         root.findViewById<TextView>(R.id.textUID).text =
-            "account : ${SalesPostService.instance.email}"
+            "account : ${Firebase.auth.currentUser!!.email}"
 
         root.findViewById<Button>(R.id.sign_out)?.setOnClickListener {
 
