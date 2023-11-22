@@ -1,43 +1,54 @@
 package com.hansung.androidusedtradeproject.model
 
+import android.icu.text.SimpleDateFormat
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import java.io.Serializable
+import java.util.Date
 
-/**
- * Firebase.auth.currentUser이 null로 설정되는 오류 발생
- * 객체에 uid, email 속성 설정, get, set 함수 설정
- * writer 속성을 uid 속성으로 변경
- */
+
 data class SalesPost(
     var id : String,
+    var date : String,
     var title : String ,
+    var email : String,
     var content : String,
     var price : Int,
-    var soldOut : Boolean,
-    var uid: String,
-    var email: String
-    )  : Serializable{
+    var soldOut : Boolean
+)  : Serializable{
 
     constructor(doc: QueryDocumentSnapshot) :
             this(
-                doc.id,
-                doc["title"].toString(),
-                doc["content"].toString(),
-                doc["price"].toString().toIntOrNull() ?: 0,
-                doc["soldOut"].toString().toBoolean(),
-                doc["uid"].toString(),
-                doc["email"].toString()
+                id = doc.id,
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                title = doc["title"].toString(),
+                email = doc["email"].toString(),
+                content = doc["content"].toString(),
+                price = doc["price"].toString().toIntOrNull() ?: 0,
+                soldOut = doc["soldOut"].toString().toBoolean()
+            )
+
+    constructor(doc: DocumentSnapshot) :
+            this(
+                id = doc.id,
+                date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate()).toString(),
+                title = doc["title"].toString(),
+                email = doc["writerEmail"].toString(),
+                content = doc["content"].toString(),
+                price = doc["price"].toString().toIntOrNull() ?: 0,
+                soldOut = doc["soldOut"].toString().toBoolean()
             )
 
     fun print() : String{
         return  "id : $id\n" +
+                "date : ${date}\n" +
                 "title : $title\n" +
+                "writerUid : $email\n" +
                 "content : $content\n" +
                 "price : $price\n" +
-                "soldOut : $soldOut\n" +
-                "uid : $uid\n" +
-                "email : $email"
+                "soldOut : $soldOut"
     }
 
     companion object {

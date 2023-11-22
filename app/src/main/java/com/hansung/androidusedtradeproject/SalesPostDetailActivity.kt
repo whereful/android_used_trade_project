@@ -28,5 +28,6 @@ class SalesPostDetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.contentText).text = post?.content
         findViewById<TextView>(R.id.price_text).text = post?.price.toString() + "원"
         findViewById<TextView>(R.id.writer_text).text = post?.email
+        findViewById<TextView>(R.id.dateText).text = post?.date.toString()
     }
 }

@@ -17,6 +17,26 @@
 
         <!--로그인 액티비티-->
         <activity
+            android:name=".Activity.SalePostUploadActivity"
+            android:exported="false" />
+        <!--<activity
+            android:name=".Activity.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SalesPostDetailActivity"
+            android:exported="false" />-->
+        <activity
+            android:name=".Activity.SalesPostTestActivity"
+            android:exported="false" />
+        <!--<activity
+            android:name=".MainActivity"
+            android:exported="true">-->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".SignActivity"
             android:label="@string/app_name"
             android:exported="true"
@@ -27,11 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".TestActivity"
