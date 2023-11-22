@@ -18,15 +18,6 @@ class SalesPostService {
 
     val db: FirebaseFirestore = Firebase.firestore
     val postsCollectionRef = db.collection("posts")
-    var uid = ""
-        set(userUid) {
-            field = userUid;
-        }
-
-    var email = ""
-        set(userEmail) {
-            field = userEmail
-        }
 
     fun getPosts(): Task<QuerySnapshot> {
         return postsCollectionRef.get();
@@ -73,35 +64,6 @@ class SalesPostService {
         }
     }
 
-    fun addPost(
-        title: String,
-        content: String,
-        price: Int,
-        onSuccess: (() -> Void)? = null,
-        onFailure: (() -> Void)? = null,
-    )
-    {
-        if(Firebase.auth.currentUser == null){
-            Log.v("로그", "인증 실패")
-            return
-        }
-
-        postsCollectionRef.add(
-            hashMapOf(
-                "title" to title,
-                "content" to content,
-                "price" to price,
-                "soldOut" to false,
-                "writer" to Firebase.auth.currentUser!!.uid
-            )
-        ).addOnSuccessListener {
-            Log.v("로그", "업로드 완료")
-            if(onSuccess != null) onSuccess()
-        }.addOnFailureListener{
-            Log.v("로그", "업로드 실패")
-            if(onFailure != null) onFailure()
-        }
-    }
 
     fun modifyPost(
         post : SalesPost,

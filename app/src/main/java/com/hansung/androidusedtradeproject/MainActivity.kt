@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // 만든 GradientDrawable을 LinearLayout의 배경으로 설정
         linearLayout.background = border
 
-        initSalesPostService(Firebase.auth.currentUser!!.uid, intent.getStringExtra("email"))
+        //initSalesPostService(Firebase.auth.currentUser!!.uid, intent.getStringExtra("email"))
 
         // 처음에는 첫 번째 프래그먼트를 표시
         supportFragmentManager.beginTransaction()
@@ -58,11 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         // 두 번째 버튼 클릭 시 호출
         findViewById<Button>(R.id.btnJoinFragment).setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFragmentContainer, registerFragment)
-                .commit()
-            //var intent = Intent(this, SalePostUploadActivity::class.java)
-            //startActivity(intent)
+            var intent = Intent(this, SalePostUploadActivity::class.java)
+            startActivity(intent)
         }
 
         // 세 번째 버튼 클릭 시 호출
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 앱이 종료될 때 자동 로그아웃
-        Firebase.auth.signOut()
+        //Firebase.auth.signOut()
     }
 
     /**
@@ -89,26 +86,5 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // super.onBackPressed()
-    }
-
-    /**
-     * SalesPostSerivce에 uid, email 값 전달
-     */
-    private fun initSalesPostService(uid: String?, email: String?) {
-        validateUidAndEmail(uid, email)
-
-        SalesPostService.instance.uid = uid.orEmpty()
-        SalesPostService.instance.email = email.orEmpty()
-    }
-
-    /**
-     * uid, email이 null이거나 ""인지 확인
-     */
-    private fun validateUidAndEmail(uid: String?, email: String?) {
-        if (uid.isNullOrEmpty() or email.isNullOrEmpty()) {
-            Toast.makeText(this, "로그인 중 오류가 발생했습니다",
-                Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, SignActivity::class.java))
-        }
     }
 }
