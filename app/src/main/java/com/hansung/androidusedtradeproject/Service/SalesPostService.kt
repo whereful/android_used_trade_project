@@ -67,16 +67,29 @@ class SalesPostService {
 
     fun modifyPost(
         post: SalesPost,
-        onSuccess: (() -> Void)? = null,
-        onFailure: (() -> Void)? = null,
-    ): Task<Void> {
-        return postsCollectionRef.document(post.id).update(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: (() -> Unit)? = null,
+        onAuthFail : (()-> Unit)? = null,
+    ){
+        if (Firebase.auth.currentUser == null) {
+            Log.v("로그", "인증 실패")
+            return
+        }
+
+        postsCollectionRef.document(post.id).update(
             mapOf<String, Any>(
                 "title" to post.title,
+                "date" to Timestamp.now(),
                 "content" to post.content,
                 "price" to post.price,
                 "soldOut" to post.soldOut,
             )
-        )
+        ).addOnSuccessListener {
+            Log.v("로그", "업로드 완료")
+            if (onSuccess != null) onSuccess()
+        }.addOnFailureListener {
+            Log.v("로그", "업로드 실패")
+            if (onFailure != null) onFailure()
+        }
     }
 }
