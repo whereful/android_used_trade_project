@@ -15,6 +15,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.MainActivity
 import com.hansung.androidusedtradeproject.R
+import com.hansung.androidusedtradeproject.Service.UserService
+import com.hansung.androidusedtradeproject.model.AppUser
 import java.text.SimpleDateFormat
 
 class SignUpFragment : Fragment() {
@@ -77,6 +79,16 @@ class SignUpFragment : Fragment() {
         Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener() {
                 if (it.isSuccessful) {
+
+                    UserService.setUserData(
+                        AppUser(
+                            name = userName,
+                            birth = userBirth,
+                            email = userEmail,
+                            uid = it.result.user!!.uid
+                        )
+                    )
+
                     // 여기에 변수를 생성해야 함
                     val intent = Intent(activity, MainActivity::class.java)
                     startActivity(intent)
