@@ -10,11 +10,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.hansung.androidusedtradeproject.Service.MessageService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialogListener {
 
     private val dialogHelper = DialogHelper(this)
+    private var post : SalesPost? = null
 
     companion object {
 
@@ -39,12 +41,12 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sales_post_detail)
 
-        val post = intent.getSerializableExtra("post", SalesPost::class.java)
+        post = intent.getSerializableExtra("post", SalesPost::class.java)
 
         if (post == null) {
             Toast.makeText(this, "판매글 정보가 없습니다.", Toast.LENGTH_SHORT).show()
         } else {
-            Log.v("로그", post.print())
+            Log.v("로그", post!!.print())
         }
 
         findViewById<TextView>(R.id.titleText).text = "제목 : ${post?.title}"
@@ -56,6 +58,7 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
 
         findViewById<Button>(R.id.chat_button).setOnClickListener {
             onShowInputDialogButtonClick()
+            //startActivity(Intent(this , SendMessageActivity::class.java))
         }
     }
 
@@ -63,7 +66,20 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
      * 사용자가 입력한 텍스트를 이용한 작업 수행
      */
     override fun onInputText(text: String) {
-        Toast.makeText(this, "사용자 입력: $text", Toast.LENGTH_SHORT).show()
+        if(post != null){
+            MessageService.sendMessage(
+                receiverEmail = post!!.email,
+                content = text,
+                fromPostId = post!!.id,
+                onSuccess = {
+                    Toast.makeText(this, "메세지 보내기 성공", Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(this, "메세지 보내기 실패", Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
+
     }
 
     /**
