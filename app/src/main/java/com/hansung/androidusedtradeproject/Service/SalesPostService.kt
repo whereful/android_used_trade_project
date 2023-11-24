@@ -69,8 +69,8 @@ class SalesPostService {
         post: SalesPost,
         onSuccess: (() -> Unit)? = null,
         onFailure: (() -> Unit)? = null,
-        onAuthFail : (()-> Unit)? = null,
-    ){
+        onAuthFail: (() -> Unit)? = null,
+    ) {
         if (Firebase.auth.currentUser == null) {
             Log.v("로그", "인증 실패")
             return

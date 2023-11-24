@@ -13,7 +13,7 @@ import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalesPostDetailActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
 
         /**
          * 대상 SalePost를 표시하는 글 자세히보기 페이지 액티비티 실행
@@ -21,7 +21,7 @@ class SalesPostDetailActivity : AppCompatActivity() {
          * @param activity 현재페이지
          * @param post 대상이되는 SalePost
          */
-        fun startWithPost(activity: Activity, post : SalesPost){
+        fun startWithPost(activity: Activity, post: SalesPost) {
             var intent = Intent(activity, SalesPostDetailActivity::class.java)
             intent.putExtra(
                 "post", post

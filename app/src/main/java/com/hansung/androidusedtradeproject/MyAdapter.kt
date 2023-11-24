@@ -1,6 +1,5 @@
 package com.hansung.androidusedtradeproject
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class MyAdapter(var items: MutableList<SalesPost>, private val onItemClickListener: OnItemClickListener) :
+class MyAdapter(
+    var items: MutableList<SalesPost>,
+    private val onItemClickListener: OnItemClickListener
+) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     /**
@@ -69,16 +71,13 @@ class MyAdapter(var items: MutableList<SalesPost>, private val onItemClickListen
         if (c1 and c2) {
             items = original.filter { true }.toMutableList()
             notifyDataSetChanged()
-        }
-        else if (!c1 and !c2) {
+        } else if (!c1 and !c2) {
             items = original.filter { false }.toMutableList()
             notifyDataSetChanged()
-        }
-        else if (c1 and !c2) {
+        } else if (c1 and !c2) {
             items = original.filter { it.soldOut == true }.toMutableList()
             notifyDataSetChanged()
-        }
-        else if (!c1 and c2) {
+        } else if (!c1 and c2) {
             items = original.filter { it.soldOut == false }.toMutableList()
             notifyDataSetChanged()
         }

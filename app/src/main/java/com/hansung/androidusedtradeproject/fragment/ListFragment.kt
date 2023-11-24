@@ -20,10 +20,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.MyAdapter
 import com.hansung.androidusedtradeproject.R
+import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.SalePostModifyActivity
 import com.hansung.androidusedtradeproject.SalePostUploadActivity
 import com.hansung.androidusedtradeproject.SalesPostDetailActivity
-import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 /**
@@ -180,7 +180,10 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
             //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
             SalesPostService().getPostById(item.id).addOnSuccessListener {
                 if (it.exists()) {
-                    SalesPostDetailActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
+                    SalesPostDetailActivity.startWithPost(
+                        activity = requireActivity(),
+                        post = SalesPost(it)
+                    )
                 } else {
                     Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
                 }
@@ -194,7 +197,10 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
             //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
             SalesPostService().getPostById(item.id).addOnSuccessListener {
                 if (it.exists()) {
-                    SalePostModifyActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
+                    SalePostModifyActivity.startWithPost(
+                        activity = requireActivity(),
+                        post = SalesPost(it)
+                    )
                 } else {
                     Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
                 }

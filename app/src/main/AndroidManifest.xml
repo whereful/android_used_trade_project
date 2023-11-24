@@ -15,8 +15,10 @@
         <activity
             android:name=".SalePostModifyActivity"
             android:exported="false" />
+
         <!-- 화면 회전 막기 -->
         <!-- android:screenOrientation="portrait" -->
+
         <!-- 로그인 액티비티 -->
         <activity
             android:name=".SignActivity"

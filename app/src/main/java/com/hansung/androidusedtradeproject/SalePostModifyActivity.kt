@@ -3,7 +3,6 @@ package com.hansung.androidusedtradeproject
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,12 +10,13 @@ import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalePostModifyActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
 
         /**
          * 대상 SalePost를 표시하는 글 수정하기 페이지 액티비티 실행
@@ -24,7 +24,7 @@ class SalePostModifyActivity : AppCompatActivity() {
          * @param activity 현재페이지
          * @param post 대상이되는 SalePost
          */
-        fun startWithPost(activity: Activity, post : SalesPost){
+        fun startWithPost(activity: Activity, post: SalesPost) {
             var intent = Intent(activity, SalePostModifyActivity::class.java)
             intent.putExtra(
                 "post", post
@@ -44,8 +44,7 @@ class SalePostModifyActivity : AppCompatActivity() {
         if (post == null) {
             Toast.makeText(this, "판매글 정보가 없습니다.", Toast.LENGTH_SHORT).show()
             finish()
-        }
-        else{
+        } else {
             val title = findViewById<EditText>(R.id.titleEditText)
             val content = findViewById<EditText>(R.id.contentEditText)
             val price = findViewById<EditText>(R.id.priceEditText)
@@ -57,25 +56,62 @@ class SalePostModifyActivity : AppCompatActivity() {
             soldOutSwitch.isChecked = post.soldOut
 
             findViewById<Button>(R.id.modifyButton).setOnClickListener {
-                post.title = title.text.toString()
-                post.content = content.text.toString()
-                post.price = price.text.toString().toInt()
-                post.soldOut = soldOutSwitch.isChecked
+                var titleText = title.text.toString()
+                var contentText = content.text.toString()
+                var priceText = price.text.toString()
 
-                SalesPostService.instance.modifyPost(
-                    post,
-                    onSuccess = {
-                        Toast.makeText(this, "글 수정 성공", Toast.LENGTH_SHORT).show()
-                        finish()
-                    },
-                    onFailure = {
-                        Toast.makeText(this, "글 수정 실패", Toast.LENGTH_SHORT).show()
-                    },
-                    onAuthFail = {
-                        Toast.makeText(this, "글 수정 실패 : 로그인이 되어 있지 않음", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                if (validateRegister(titleText, contentText, priceText)) {
+                    post.title = titleText
+                    post.content = contentText
+                    post.price = priceText.toInt()
+                    post.soldOut = soldOutSwitch.isChecked
+
+                    SalesPostService.instance.modifyPost(
+                        post,
+                        onSuccess = {
+                            Toast.makeText(this, "글 수정 성공", Toast.LENGTH_SHORT).show()
+                            finish()
+                        },
+                        onFailure = {
+                            Toast.makeText(this, "글 수정 실패", Toast.LENGTH_SHORT).show()
+                        },
+                        onAuthFail = {
+                            Toast.makeText(this, "글 수정 실패 : 로그인이 되어 있지 않음", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    )
+                }
             }
         }
+    }
+
+    /**
+     * 등록 유효성 검사
+     */
+    private fun validateRegister(title: String, content: String, price: String): Boolean {
+        if (title.isNullOrEmpty()) {
+            Toast.makeText(
+                this, "제목을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+
+        if (content.isNullOrEmpty()) {
+            Toast.makeText(
+                this, "내용을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+
+        if (price.isNullOrEmpty()) {
+            Toast.makeText(
+                this, "가격을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        return true
     }
 }
