@@ -44,11 +44,11 @@ class SalesPostDetailActivity : AppCompatActivity() {
             Log.v("로그", post.print())
         }
 
-
-        findViewById<TextView>(R.id.titleText).text = post?.title
-        findViewById<TextView>(R.id.contentText).text = post?.content
-        findViewById<TextView>(R.id.price_text).text = post?.price.toString() + "원"
-        findViewById<TextView>(R.id.writer_text).text = post?.email
-        findViewById<TextView>(R.id.dateText).text = post?.date.toString()
+        findViewById<TextView>(R.id.titleText).text = "제목 : ${post?.title}"
+        findViewById<TextView>(R.id.contentText).text = "내용 : ${post?.content}"
+        findViewById<TextView>(R.id.price_text).text = "가격 : ${post?.price.toString()}원"
+        findViewById<TextView>(R.id.writer_text).text = "이메일 : ${post?.email}"
+        findViewById<TextView>(R.id.dateText).text = "날짜 : ${post?.date.toString()}"
+        findViewById<TextView>(R.id.soldOut_text).text = "판매됨 : ${post?.soldOut.toString()}"
     }
 }

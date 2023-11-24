@@ -30,8 +30,20 @@ class AccountFragment : Fragment() {
         // 네 번째 프래그먼트의 레이아웃을 정의하고 반환
         root = inflater.inflate(R.layout.main_fragment_account, container, false)
 
-        root.findViewById<TextView>(R.id.textUID).text =
-            "account : ${Firebase.auth.currentUser!!.email}"
+        if (Firebase.auth.currentUser == null) {
+            Toast.makeText(context, "로그인 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            UserService.getUserDataByUid(Firebase.auth.currentUser!!.uid)
+                .addOnSuccessListener {
+                    var appUser = AppUser(it)
+                    root.findViewById<TextView>(R.id.nameText).text = "name : ${appUser.name}"
+                    root.findViewById<TextView>(R.id.birthText).text = "birth : ${appUser.birth}"
+                    root.findViewById<TextView>(R.id.emailText).text =
+                        "account : ${Firebase.auth.currentUser!!.email}"
+                }.addOnFailureListener {
+                    Toast.makeText(context, "유저정보 불러오기 실패", Toast.LENGTH_SHORT).show()
+                }
+        }
 
         root.findViewById<Button>(R.id.sign_out)?.setOnClickListener {
 
@@ -49,24 +61,6 @@ class AccountFragment : Fragment() {
                 Intent(activity, TestActivity::class.java)
             )
         }
-
-        if(Firebase.auth.currentUser == null){
-            Toast.makeText(context, "로그인 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
-        }
-        else{
-            UserService.getUserDataByUid(Firebase.auth.currentUser!!.uid)
-                .addOnSuccessListener {
-                    var appUser = AppUser(it)
-                    root.findViewById<TextView>(R.id.nameText).text = appUser.name
-                    root.findViewById<TextView>(R.id.birthText).text = appUser.birth
-                }.addOnFailureListener{
-                    Toast.makeText(context, "유저정보 불러오기 실패", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-
-
-
 
         // 위에서 정의한 inflater을 반환해야 함
         return root;

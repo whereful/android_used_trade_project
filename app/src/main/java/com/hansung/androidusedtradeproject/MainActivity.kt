@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onRestart() {
-        // println("호출")
         super.onRestart()
         listFragment.refreshAdapter()
     }

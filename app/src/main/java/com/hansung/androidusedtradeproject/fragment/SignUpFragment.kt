@@ -75,7 +75,6 @@ class SignUpFragment : Fragment() {
             return;
         }
 
-        // createUserWithEmailAndPassword
         Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener() {
                 if (it.isSuccessful) {

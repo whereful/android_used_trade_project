@@ -36,7 +36,7 @@ data class SalesPost(
                 date = SimpleDateFormat("yyyyMMdd HH:mm").format((doc["date"] as Timestamp).toDate())
                     .toString(),
                 title = doc["title"].toString(),
-                email = doc["writerEmail"].toString(),
+                email = doc["email"].toString(),
                 content = doc["content"].toString(),
                 price = doc["price"].toString().toIntOrNull() ?: 0,
                 soldOut = doc["soldOut"].toString().toBoolean()

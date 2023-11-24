@@ -53,7 +53,7 @@ class SalesPostService {
                 "content" to content,
                 "price" to price,
                 "soldOut" to false,
-                "email" to Firebase.auth.currentUser!!.uid,
+                "email" to Firebase.auth.currentUser!!.email,
             )
         ).addOnSuccessListener {
             Log.v("로그", "업로드 완료")

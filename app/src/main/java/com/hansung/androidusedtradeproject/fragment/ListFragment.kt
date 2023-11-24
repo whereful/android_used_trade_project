@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.MyAdapter
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.SalePostUploadActivity
+import com.hansung.androidusedtradeproject.SalesPostDetailActivity
 import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
@@ -28,7 +30,7 @@ import com.hansung.androidusedtradeproject.model.SalesPost
  *
  * 화면이 전환될 때마다 매번 갱신이 일어남
  */
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
     var postList = mutableListOf<SalesPost>()
     var adapter: MyAdapter? = null
@@ -53,7 +55,7 @@ class ListFragment : Fragment() {
             val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
             recyclerView.layoutManager = LinearLayoutManager(activity)
 
-            adapter = MyAdapter(postList)
+            adapter = MyAdapter(postList, this)
             recyclerView.adapter = adapter
 
         }
@@ -75,18 +77,18 @@ class ListFragment : Fragment() {
     // 버튼 클릭 시 다이얼로그 표시
     private fun showCheckBoxDialog(adapter: MyAdapter?) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Checkbox Dialog")
+        builder.setTitle("필터")
 
         // 다이얼로그 내에 CheckBox 추가
         val linearLayout = LinearLayout(requireContext())
         linearLayout.orientation = LinearLayout.VERTICAL
 
         val checkBox1 = CheckBox(requireContext())
-        checkBox1.text = "판매 중"
+        checkBox1.text = "판매됨"
         linearLayout.addView(checkBox1)
 
         val checkBox2 = CheckBox(requireContext())
-        checkBox2.text = "판매 완료"
+        checkBox2.text = "판매되지 않음"
         linearLayout.addView(checkBox2)
 
         builder.setView(linearLayout)
@@ -156,14 +158,23 @@ class ListFragment : Fragment() {
     }
 
     fun refreshAdapter() {
-//        println("호출")
         SalesPostService.instance.getPosts().addOnSuccessListener {
             // makeListByQuerySnapshot를 통해서 스냅샷으로 글 목록 리스트로 변환 할 수 있습니다.
             postList = SalesPost.makeListByQuerySnapshot(it)
 
-//            println(postList)
             adapter?.setData(postList)
             adapter?.notifyDataSetChanged()
+        }
+    }
+
+    override fun onItemClick(item: String) {
+        //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
+        SalesPostService().getPostById(item).addOnSuccessListener {
+            if (it.exists()) {
+                SalesPostDetailActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
+            } else {
+                Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

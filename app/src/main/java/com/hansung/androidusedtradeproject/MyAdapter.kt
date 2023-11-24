@@ -1,5 +1,6 @@
 package com.hansung.androidusedtradeproject
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class MyAdapter(var items: MutableList<SalesPost>) :
+class MyAdapter(var items: MutableList<SalesPost>, private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     /**
      * 원본 저장
      */
     var original = items.filter { true }
+
+    /**
+     * 클릭 이벤트 인터페이스
+     */
+    interface OnItemClickListener {
+        fun onItemClick(item: String)
+    }
 
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val userEmail = v.findViewById<TextView>(R.id.userEmail)
@@ -43,7 +51,12 @@ class MyAdapter(var items: MutableList<SalesPost>) :
         holder.title.text = "제목 : " + items[position].title
         holder.content.text = "내용 : " + items[position].content
         holder.price.text = "가격 : " + items[position].price.toString()
-        holder.soldOut.text = "판매 여부 : " + items[position].soldOut.toString()
+        holder.soldOut.text = "판매됨 : " + items[position].soldOut.toString()
+
+        // 클릭 이벤트 등록
+        holder.itemView.setOnClickListener {
+            onItemClickListener.onItemClick(items[position].id)
+        }
     }
 
     fun setData(data: MutableList<SalesPost>) {
