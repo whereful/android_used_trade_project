@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="제목"
         android:inputType="text"
-        android:text="제목"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -29,12 +29,12 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:gravity="top"
+        android:hint="설명을 써주세요"
         android:inputType="textMultiLine"
         android:lines="4"
         android:minLines="4"
         android:scrollHorizontally="true"
-        android:text="설명을 써주세요"
-        app:layout_constraintBottom_toTopOf="@+id/uploadButton"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
         android:id="@+id/modifyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="280dp"
         android:text="업로드"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,4 +92,5 @@
         app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toEndOf="@+id/wonText2"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

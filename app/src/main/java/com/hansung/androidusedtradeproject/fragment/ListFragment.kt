@@ -35,8 +35,8 @@ import com.hansung.androidusedtradeproject.model.SalesPost
  */
 class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
-    var postList = mutableListOf<SalesPost>()
-    var adapter: MyAdapter? = null
+    private var postList = mutableListOf<SalesPost>()
+    private var adapter: MyAdapter? = null
 
 
     override fun onCreateView(
@@ -77,12 +77,16 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
     }
 
 
-    // 버튼 클릭 시 다이얼로그 표시
+    /**
+     * 버튼 클릭 시 다이얼로그 표시
+     */
     private fun showCheckBoxDialog(adapter: MyAdapter?) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("필터")
+        builder.setTitle("판매 필터")
 
-        // 다이얼로그 내에 CheckBox 추가
+        /**
+         * 다이얼로그 내에 CheckBox 추가
+         */
         val linearLayout = LinearLayout(requireContext())
         linearLayout.orientation = LinearLayout.VERTICAL
 
@@ -96,35 +100,46 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
         builder.setView(linearLayout)
 
-        // 확인 버튼 설정 및 클릭 리스너 추가
+        /**
+         * 확인 버튼 설정 및 클릭 리스너 추가
+         */
         builder.setPositiveButton("OK") { _, _ ->
-            // CheckBox 상태 확인
             val isChecked1 = checkBox1.isChecked
             val isChecked2 = checkBox2.isChecked
 
             adapter?.filter(isChecked1, isChecked2)
         }
 
-        // 취소 버튼 설정
+        /**
+         * 취소 버튼 설정
+         */
         builder.setNegativeButton("Cancel") { dialog, _ ->
             dialog.dismiss()
         }
 
-        // 다이얼로그 표시
+        /**
+         * 다이얼로그 표시
+         */
         builder.show()
     }
 
 
     private fun drawLinearLayoutBackgroundAndBorder(root: View) {
-        // LinearLayout 찾기 (ID에 따라 수정)
+        /**
+         * LinearLayout 찾기 (ID에 따라 수정)
+         */
         val linearLayout = root.findViewById<LinearLayout>(R.id.partLinearLayout)
 
-        // 테두리를 그리기 위한 GradientDrawable 생성
+        /**
+         * 테두리를 그리기 위한 GradientDrawable 생성
+         */
         val border = GradientDrawable()
         border.setColor(Color.GREEN) // 배경색
         border.setStroke(2, Color.BLACK) // 테두리 두께 및 색상
 
-        // 만든 GradientDrawable을 LinearLayout의 배경으로 설정
+        /**
+         * 만든 GradientDrawable을 LinearLayout의 배경으로 설정
+         */
         linearLayout.background = border
     }
 
@@ -136,7 +151,9 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
         val menuPrice = root.findViewById<TextView>(R.id.menuPrice)
         val menuSoldOut = root.findViewById<TextView>(R.id.menuSoldOut)
 
-        // 테두리를 그리기 위한 GradientDrawable 생성
+        /**
+         * 테두리를 그리기 위한 GradientDrawable 생성
+         */
         val borderUser = GradientDrawable()
         borderUser.setStroke(2, Color.BLACK) // 테두리 두께 및 색상
 
@@ -152,7 +169,9 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
         val borderSoldOut = GradientDrawable()
         borderSoldOut.setStroke(2, Color.BLACK) // 테두리 두께 및 색상
 
-        // 만든 GradientDrawable을 TextView의 배경으로 설정
+        /**
+         * 만든 GradientDrawable을 TextView의 배경으로 설정
+         */
         menuUser.background = borderUser
         menuTitle.background = borderTitle
         menuContent.background = borderContent
@@ -162,7 +181,6 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
     fun refreshAdapter() {
         SalesPostService.instance.getPosts().addOnSuccessListener {
-            // makeListByQuerySnapshot를 통해서 스냅샷으로 글 목록 리스트로 변환 할 수 있습니다.
             postList = SalesPost.makeListByQuerySnapshot(it)
 
             adapter?.setData(postList)
@@ -175,9 +193,11 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
         /**
          * 판매 글 상세 보기 화면으로 이동
+         *
+         * 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
          */
         if (item.email != Firebase.auth.currentUser!!.email) {
-            //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
+
             SalesPostService().getPostById(item.id).addOnSuccessListener {
                 if (it.exists()) {
                     SalesPostDetailActivity.startWithPost(
@@ -192,9 +212,10 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
 
         /**
          * 판매 글 수정 화면으로 이동
+         *
+         * 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
          */
         else {
-            //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
             SalesPostService().getPostById(item.id).addOnSuccessListener {
                 if (it.exists()) {
                     SalePostModifyActivity.startWithPost(

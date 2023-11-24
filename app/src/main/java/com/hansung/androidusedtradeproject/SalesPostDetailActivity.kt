@@ -5,13 +5,16 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class SalesPostDetailActivity : AppCompatActivity() {
+class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialogListener {
+
+    private val dialogHelper = DialogHelper(this)
 
     companion object {
 
@@ -50,5 +53,23 @@ class SalesPostDetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.writer_text).text = "이메일 : ${post?.email}"
         findViewById<TextView>(R.id.dateText).text = "날짜 : ${post?.date.toString()}"
         findViewById<TextView>(R.id.soldOut_text).text = "판매됨 : ${post?.soldOut.toString()}"
+
+        findViewById<Button>(R.id.chat_button).setOnClickListener {
+            onShowInputDialogButtonClick()
+        }
+    }
+
+    /**
+     * 사용자가 입력한 텍스트를 이용한 작업 수행
+     */
+    override fun onInputText(text: String) {
+        Toast.makeText(this, "사용자 입력: $text", Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * 다이얼로그 표시 버튼 클릭 시 호출될 메서드
+     */
+    private fun onShowInputDialogButtonClick() {
+        dialogHelper.showInputDialog("메시지를 입력하세요", this)
     }
 }
