@@ -16,8 +16,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.MyAdapter
 import com.hansung.androidusedtradeproject.R
+import com.hansung.androidusedtradeproject.SalePostModifyActivity
 import com.hansung.androidusedtradeproject.SalePostUploadActivity
 import com.hansung.androidusedtradeproject.SalesPostDetailActivity
 import com.hansung.androidusedtradeproject.Service.SalesPostService
@@ -167,14 +170,36 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
         }
     }
 
-    override fun onItemClick(item: String) {
-        //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
-        SalesPostService().getPostById(item).addOnSuccessListener {
-            if (it.exists()) {
-                SalesPostDetailActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
-            } else {
-                Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
+
+    override fun onItemClick(item: SalesPost) {
+
+        /**
+         * 판매 글 상세 보기 화면으로 이동
+         */
+        if (item.email != Firebase.auth.currentUser!!.email) {
+            //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
+            SalesPostService().getPostById(item.id).addOnSuccessListener {
+                if (it.exists()) {
+                    SalesPostDetailActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
+                } else {
+                    Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
+        /**
+         * 판매 글 수정 화면으로 이동
+         */
+        else {
+            //#. 글을 불러온후 액티비티의 startWithPost를 호출하여 해당 SalePost를 대상으로 하는 자세히보기 액티비티 실행
+            SalesPostService().getPostById(item.id).addOnSuccessListener {
+                if (it.exists()) {
+                    SalePostModifyActivity.startWithPost(activity = requireActivity() , post = SalesPost(it))
+                } else {
+                    Toast.makeText(activity, "글이 없음", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 }

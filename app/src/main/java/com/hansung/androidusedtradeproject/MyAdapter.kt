@@ -20,7 +20,7 @@ class MyAdapter(var items: MutableList<SalesPost>, private val onItemClickListen
      * 클릭 이벤트 인터페이스
      */
     interface OnItemClickListener {
-        fun onItemClick(item: String)
+        fun onItemClick(item: SalesPost)
     }
 
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -55,7 +55,7 @@ class MyAdapter(var items: MutableList<SalesPost>, private val onItemClickListen
 
         // 클릭 이벤트 등록
         holder.itemView.setOnClickListener {
-            onItemClickListener.onItemClick(items[position].id)
+            onItemClickListener.onItemClick(items[position])
         }
     }
 
