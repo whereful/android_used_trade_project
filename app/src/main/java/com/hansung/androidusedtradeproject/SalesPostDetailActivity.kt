@@ -66,12 +66,16 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
     /**
      * 사용자가 입력한 텍스트를 이용한 작업 수행
      */
+    /**
+     * fromPostTitle 추가
+     */
     override fun onInputText(text: String) {
         if (post != null) {
             MessageService.sendMessage(
                 receiverEmail = post!!.email,
                 content = text,
                 fromPostId = post!!.id,
+                fromPostTitle = post!!.title,
                 onSuccess = {
                     Toast.makeText(this, "메세지 보내기 성공", Toast.LENGTH_SHORT).show()
                 },

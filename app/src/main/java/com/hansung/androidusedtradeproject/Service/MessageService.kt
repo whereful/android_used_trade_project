@@ -28,10 +28,14 @@ object MessageService {
     }
 
     //#. fromPostId는 아직은 사용하지 않으니 아무값이나 넣어도됩니다.
+    /**
+     * fromPostTitle 추가
+     */
     fun sendMessage(
         content: String,
         receiverEmail: String,
         fromPostId: String,
+        fromPostTitle: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: (() -> Unit)? = null,
         onAuthFailure: (() -> Unit)? = null
@@ -49,6 +53,7 @@ object MessageService {
                 "date" to Timestamp.now(),
                 "content" to content,
                 "fromPostId" to fromPostId,
+                "fromPostTitle" to fromPostTitle,
             )
         ).addOnSuccessListener {
             Log.v("로그", "업로드 완료")

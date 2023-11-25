@@ -5,12 +5,16 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
+/**
+ * fromPostTitle 속성 추가
+ */
 data class AppMessage(
     val senderEmail: String,
     val receiverEmail: String,
     val date: String,
     val content: String,
     val fromPostId: String,
+    val fromPostTitle: String,
 ) {
 
     companion object {
@@ -32,6 +36,7 @@ data class AppMessage(
                     .toString(),
                 content = doc["content"].toString(),
                 fromPostId = doc["fromPostId"].toString(),
+                fromPostTitle = doc["fromPostTitle"].toString(),
             )
 
     fun print(): String {
@@ -39,6 +44,7 @@ data class AppMessage(
                 "receiverEmail : ${receiverEmail}\n" +
                 "date : $date\n" +
                 "content : $content\n" +
-                "fromPostId : $fromPostId\n"
+                "fromPostId : $fromPostId\n" +
+                "fromPostTitle : $fromPostTitle\n"
     }
 }

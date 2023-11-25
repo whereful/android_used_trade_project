@@ -16,6 +16,7 @@ class MessageAdapter(
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val senderEmail = v.findViewById<TextView>(R.id.senderEmail)
         val date = v.findViewById<TextView>(R.id.date)
+        val postTitle = v.findViewById<TextView>(R.id.postTitle)
         val content = v.findViewById<TextView>(R.id.content)
 
     }
@@ -36,8 +37,10 @@ class MessageAdapter(
      */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+
         holder.senderEmail.text = "보낸 이 : " + items[position].senderEmail
         holder.date.text = "날짜 : " + items[position].date
+        holder.postTitle.text = "포스트 제목 : " + items[position].fromPostTitle
         holder.content.text = "내용 : " + items[position].content
 
         // 클릭 이벤트 등록

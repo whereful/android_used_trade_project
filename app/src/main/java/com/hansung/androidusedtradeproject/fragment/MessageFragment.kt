@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hansung.androidusedtradeproject.adapter.MessageAdapter
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.MessageService
+import com.hansung.androidusedtradeproject.adapter.MessageAdapter
 import com.hansung.androidusedtradeproject.model.AppMessage
 
 class MessageFragment : Fragment() {
