@@ -16,7 +16,7 @@ import com.hansung.androidusedtradeproject.model.SalesPost
 class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialogListener {
 
     private val dialogHelper = DialogHelper(this)
-    private var post : SalesPost? = null
+    private var post: SalesPost? = null
 
     companion object {
 
@@ -66,7 +66,7 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
      * 사용자가 입력한 텍스트를 이용한 작업 수행
      */
     override fun onInputText(text: String) {
-        if(post != null){
+        if (post != null) {
             MessageService.sendMessage(
                 receiverEmail = post!!.email,
                 content = text,

@@ -6,12 +6,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
 data class AppMessage(
-    val senderEmail : String,
-    val receiverEmail : String,
-    val date : String,
-    val content : String,
-    val fromPostId : String,
-){
+    val senderEmail: String,
+    val receiverEmail: String,
+    val date: String,
+    val content: String,
+    val fromPostId: String,
+) {
 
     companion object {
         fun makeListByQuerySnapshot(snapshot: QuerySnapshot): MutableList<AppMessage> {

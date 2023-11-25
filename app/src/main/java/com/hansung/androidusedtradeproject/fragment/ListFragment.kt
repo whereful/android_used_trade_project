@@ -20,10 +20,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.MyAdapter
 import com.hansung.androidusedtradeproject.R
-import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.SalePostModifyActivity
 import com.hansung.androidusedtradeproject.SalePostUploadActivity
 import com.hansung.androidusedtradeproject.SalesPostDetailActivity
+import com.hansung.androidusedtradeproject.Service.SalesPostService
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 /**

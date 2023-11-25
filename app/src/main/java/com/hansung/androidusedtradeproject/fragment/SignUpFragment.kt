@@ -13,9 +13,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.hansung.androidusedtradeproject.MainActivity
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.UserService
-import com.hansung.androidusedtradeproject.MainActivity
 import com.hansung.androidusedtradeproject.model.AppUser
 import java.text.SimpleDateFormat
 
