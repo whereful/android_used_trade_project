@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hansung.androidusedtradeproject.ListAdapter
-import com.hansung.androidusedtradeproject.MessageAdapter
+import com.hansung.androidusedtradeproject.adapter.MessageAdapter
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.MessageService
 import com.hansung.androidusedtradeproject.model.AppMessage
-import com.hansung.androidusedtradeproject.model.SalesPost
 
 class MessageFragment : Fragment() {
 

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.hansung.androidusedtradeproject.Service.MessageService
+import com.hansung.androidusedtradeproject.dialog.DialogHelper
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialogListener {

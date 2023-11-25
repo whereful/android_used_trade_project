@@ -1,10 +1,11 @@
-package com.hansung.androidusedtradeproject
+package com.hansung.androidusedtradeproject.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.model.SalesPost
 
 class ListAdapter(

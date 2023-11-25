@@ -1,9 +1,10 @@
-package com.hansung.androidusedtradeproject
+package com.hansung.androidusedtradeproject.dialog
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.hansung.androidusedtradeproject.R
 
 class DialogHelper(private val context: Context) {
 
