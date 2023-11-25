@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hansung.androidusedtradeproject.model.SalesPost
 
-class MyAdapter(
+class ListAdapter(
     var items: MutableList<SalesPost>,
     private val onItemClickListener: OnItemClickListener
 ) :
-    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     /**
      * 원본 저장
@@ -26,8 +26,8 @@ class MyAdapter(
     }
 
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val userEmail = v.findViewById<TextView>(R.id.userEmail)
-        val title = v.findViewById<TextView>(R.id.title)
+        val userEmail = v.findViewById<TextView>(R.id.senderEmail)
+        val title = v.findViewById<TextView>(R.id.date)
         val content = v.findViewById<TextView>(R.id.content)
         val price = v.findViewById<TextView>(R.id.price)
         val soldOut = v.findViewById<TextView>(R.id.soldOut)

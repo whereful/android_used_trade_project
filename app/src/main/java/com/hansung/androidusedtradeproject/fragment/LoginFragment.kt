@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         root = inflater.inflate(R.layout.sign_fragment_login, container, false)
 
         root.findViewById<Button>(R.id.login)?.setOnClickListener {
-            val userEmail = root.findViewById<EditText>(R.id.userEmail)?.text.toString()
+            val userEmail = root.findViewById<EditText>(R.id.senderEmail)?.text.toString()
             val password = root.findViewById<EditText>(R.id.password)?.text.toString()
             doLogin(userEmail, password)
         }
@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
                         event.keyCode == KeyEvent.KEYCODE_ENTER)
             ) {
                 // Enter 키가 눌렸을 때 실행할 함수 호출
-                val userEmail = root.findViewById<EditText>(R.id.userEmail)?.text.toString()
+                val userEmail = root.findViewById<EditText>(R.id.senderEmail)?.text.toString()
                 val password = root.findViewById<EditText>(R.id.password)?.text.toString()
                 doLogin(userEmail, password)
 

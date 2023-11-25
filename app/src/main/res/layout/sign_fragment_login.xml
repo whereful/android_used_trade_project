@@ -6,7 +6,7 @@
 
 
     <EditText
-        android:id="@+id/userEmail"
+        android:id="@+id/senderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -31,7 +31,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/senderEmail" />
 
 
     <Button

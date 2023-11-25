@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.hansung.androidusedtradeproject.MyAdapter
+import com.hansung.androidusedtradeproject.ListAdapter
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.SalePostModifyActivity
 import com.hansung.androidusedtradeproject.SalePostUploadActivity
@@ -33,10 +33,10 @@ import com.hansung.androidusedtradeproject.model.SalesPost
  *
  * 화면이 전환될 때마다 매번 갱신이 일어남
  */
-class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
+class ListFragment : Fragment(), ListAdapter.OnItemClickListener {
 
     private var postList = mutableListOf<SalesPost>()
-    private var adapter: MyAdapter? = null
+    private var adapter: ListAdapter? = null
 
 
     override fun onCreateView(
@@ -58,7 +58,7 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
             val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
             recyclerView.layoutManager = LinearLayoutManager(activity)
 
-            adapter = MyAdapter(postList, this)
+            adapter = ListAdapter(postList, this)
             recyclerView.adapter = adapter
 
         }
@@ -80,7 +80,7 @@ class ListFragment : Fragment(), MyAdapter.OnItemClickListener {
     /**
      * 버튼 클릭 시 다이얼로그 표시
      */
-    private fun showCheckBoxDialog(adapter: MyAdapter?) {
+    private fun showCheckBoxDialog(adapter: ListAdapter?) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("판매 필터")
 

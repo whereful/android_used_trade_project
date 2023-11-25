@@ -35,7 +35,7 @@ class SignUpFragment : Fragment() {
         root.findViewById<Button>(R.id.sign_up)?.setOnClickListener {
             val userName = root.findViewById<EditText>(R.id.userName)?.text.toString()
             val userBirth = root.findViewById<EditText>(R.id.userBirth)?.text.toString()
-            val userEmail = root.findViewById<EditText>(R.id.userEmail)?.text.toString()
+            val userEmail = root.findViewById<EditText>(R.id.senderEmail)?.text.toString()
             val password = root.findViewById<EditText>(R.id.password)?.text.toString()
             doSignUp(userName, userBirth, userEmail, password)
         }
@@ -51,7 +51,7 @@ class SignUpFragment : Fragment() {
                 // Enter 키가 눌렸을 때 실행할 함수 호출
                 val userName = root.findViewById<EditText>(R.id.userName)?.text.toString()
                 val userBirth = root.findViewById<EditText>(R.id.userBirth)?.text.toString()
-                val userEmail = root.findViewById<EditText>(R.id.userEmail)?.text.toString()
+                val userEmail = root.findViewById<EditText>(R.id.senderEmail)?.text.toString()
                 val password = root.findViewById<EditText>(R.id.password)?.text.toString()
                 doSignUp(userName, userBirth, userEmail, password)
 
