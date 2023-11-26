@@ -15,8 +15,8 @@
 
         <!-- 화면 회전 막기 -->
         <!-- android:screenOrientation="portrait" -->
-        <!-- 로그인 액티비티 -->
 
+        <!-- 로그인 액티비티 -->
         <activity
             android:name=".SignActivity"
             android:exported="true"
@@ -28,18 +28,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".TestActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".SalePostUploadActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".SalesPostDetailActivity"
             android:exported="false"
@@ -47,7 +46,8 @@
 
         <activity
             android:name=".SalePostModifyActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
     </application>
 
