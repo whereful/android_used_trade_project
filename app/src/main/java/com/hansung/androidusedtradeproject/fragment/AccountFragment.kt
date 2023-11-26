@@ -14,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 import com.hansung.androidusedtradeproject.R
 import com.hansung.androidusedtradeproject.Service.UserService
 import com.hansung.androidusedtradeproject.SignActivity
-import com.hansung.androidusedtradeproject.TestActivity
 import com.hansung.androidusedtradeproject.model.AppUser
 
 class AccountFragment : Fragment() {
@@ -55,12 +54,6 @@ class AccountFragment : Fragment() {
             activity?.finish()
         }
 
-        // 테스트 이동 버튼
-        root.findViewById<Button>(R.id.move_test_page_button)?.setOnClickListener {
-            startActivity(
-                Intent(activity, TestActivity::class.java)
-            )
-        }
 
         // 위에서 정의한 inflater을 반환해야 함
         return root;
