@@ -65,6 +65,14 @@ class SalePostUploadActivity : AppCompatActivity() {
             ).show()
             return false
         }
+
+        if (price.toInt() <= 0) {
+            Toast.makeText(
+                this, "가격이 양수여야 합니다.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
         return true
     }
 }

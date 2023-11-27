@@ -60,7 +60,7 @@ class SalePostModifyActivity : AppCompatActivity() {
                 var contentText = content.text.toString()
                 var priceText = price.text.toString()
 
-                if (validateRegister(titleText, contentText, priceText)) {
+                if (validateModify(titleText, contentText, priceText)) {
                     post.title = titleText
                     post.content = contentText
                     post.price = priceText.toInt()
@@ -88,7 +88,7 @@ class SalePostModifyActivity : AppCompatActivity() {
     /**
      * 등록 유효성 검사
      */
-    private fun validateRegister(title: String, content: String, price: String): Boolean {
+    private fun validateModify(title: String, content: String, price: String): Boolean {
         if (title.isNullOrEmpty()) {
             Toast.makeText(
                 this, "제목을 입력해주세요",
@@ -108,6 +108,14 @@ class SalePostModifyActivity : AppCompatActivity() {
         if (price.isNullOrEmpty()) {
             Toast.makeText(
                 this, "가격을 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+
+        if (price.toInt() <= 0) {
+            Toast.makeText(
+                this, "가격이 양수여야 합니다.",
                 Toast.LENGTH_SHORT
             ).show()
             return false
