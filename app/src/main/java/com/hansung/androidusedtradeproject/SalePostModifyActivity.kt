@@ -89,7 +89,7 @@ class SalePostModifyActivity : AppCompatActivity() {
      * 등록 유효성 검사
      */
     private fun validateModify(title: String, content: String, price: String): Boolean {
-        if (title.isNullOrEmpty()) {
+        if (title.isNullOrBlank()) {
             Toast.makeText(
                 this, "제목을 입력해주세요",
                 Toast.LENGTH_SHORT
@@ -97,7 +97,7 @@ class SalePostModifyActivity : AppCompatActivity() {
             return false
         }
 
-        if (content.isNullOrEmpty()) {
+        if (content.isNullOrBlank()) {
             Toast.makeText(
                 this, "내용을 입력해주세요",
                 Toast.LENGTH_SHORT
@@ -105,7 +105,7 @@ class SalePostModifyActivity : AppCompatActivity() {
             return false
         }
 
-        if (price.isNullOrEmpty()) {
+        if (price.isNullOrBlank()) {
             Toast.makeText(
                 this, "가격을 입력해주세요",
                 Toast.LENGTH_SHORT
