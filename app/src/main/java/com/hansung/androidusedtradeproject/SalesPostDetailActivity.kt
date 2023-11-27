@@ -70,7 +70,7 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
      * fromPostTitle 추가
      */
     override fun onInputText(text: String) {
-        if (post != null) {
+        if (post != null && validateMessage(text)) {
             MessageService.sendMessage(
                 receiverEmail = post!!.email,
                 content = text,
@@ -84,7 +84,6 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
                 }
             )
         }
-
     }
 
     /**
@@ -92,5 +91,19 @@ class SalesPostDetailActivity : AppCompatActivity(), DialogHelper.InputTextDialo
      */
     private fun onShowInputDialogButtonClick() {
         dialogHelper.showInputDialog("메시지를 입력하세요", this)
+    }
+
+    /**
+     * 메시지 유효성 검사
+     */
+    private fun validateMessage(message: String): Boolean {
+        if (message.isNullOrBlank()) {
+            Toast.makeText(
+                this, "메시지를 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        return true
     }
 }
