@@ -63,15 +63,6 @@ class SignActivity : AppCompatActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // super.onBackPressed()
-        if (System.currentTimeMillis() - backPressedTime >= 2000) {
-            backPressedTime = System.currentTimeMillis()
-            Toast.makeText(
-                this, "뒤로 가기 버튼을 한번 더 누르면 종료됩니다.",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            finish()
-        }
     }
 
 }
